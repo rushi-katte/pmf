@@ -1,0 +1,45 @@
+
+  <div class="container">
+    <h2>Product Manager</h2>
+  
+    <form (ngSubmit)="isEditMode ? updateProduct() : addProduct()" class="form">
+        <input [(ngModel)]="newProduct.id" name="id" placeholder="Product Id" />
+      <input [(ngModel)]="newProduct.productName" name="productName" placeholder="Product Name" required />
+      <input [(ngModel)]="newProduct.category" name="category" placeholder="Category" required />
+      <input [(ngModel)]="newProduct.quntity" name="quntity" placeholder="Quantity" type="number" required />
+      
+      <button type="submit">
+        {{ isEditMode ? 'Update' : 'Add' }} Product
+      </button>
+  
+      <button *ngIf="isEditMode" type="button" (click)="resetForm()" class="cancel-btn">
+        Cancel
+      </button>
+    </form>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Product Name</th>
+          <th>Category</th>
+          <th>Quantity</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of products">
+          <td>{{ p.id }}</td>
+          <td>{{ p.productName }}</td>
+          <td>{{ p.category }}</td>
+          <td>{{ p.quntity }}</td>
+          <td>
+            <button (click)="editProduct(p)">Edit</button>
+            <button (click)="deleteProduct(p.id!)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  
